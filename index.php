@@ -1,0 +1,29 @@
+<?php
+
+//import de de l'autoload
+include 'vendor/autoload.php';
+include 'env.php';
+
+//récupération de l'url
+$url = parse_url($_SERVER["REQUEST_URI"]);
+$path = isset($url["path"]) ? $url["path"] : "/";
+//Import des classes
+use App\Controller\HomeController;
+use App\Controller\GameController;
+//Instance des controllers
+
+//Router
+switch ($path) {
+        case '/':
+            $homeController->index();
+            break;
+        case '/game/add':
+            $registerController->login();
+            break;
+        case '/games':
+            $registerController->addAccount();
+            break;
+        default:
+            $errorController->error404();
+            break;
+    }
